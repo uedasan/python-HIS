@@ -2,11 +2,11 @@ from pathlib import Path
 import numpy as np
 from tqdm import tqdm
 
-class HISReader():
 
+class HISReader:
     def __init__(self, path):
         self.fd = open(path, "rb")
-        header,comment = self.__read_header()
+        header, comment = self.__read_header()
         self.length = header[7]
         self.count = 0
         self.fd.seek(0)
@@ -27,7 +27,7 @@ class HISReader():
         if self.count == self.length:
             return None
         self.header, self.comment = self.__read_header()
-        if lsef.header[6]!=2:
+        if lsef.header[6] != 2:
             raise NotImplementedError("only 16bit type is supported")
         width, height = self.header[2:4]
         image = np.fromfile(self.fd, f"{width}H", height)
@@ -37,16 +37,12 @@ class HISReader():
     def __read_header(self):
         fmt = "2a,H,H,H,H,H,H,i4,H,H,d,i4,30b"
         self.header = tuple(np.fromfile(self.fd, fmt, 1)[0])
-        assert(self.header[0] == b"IM")
+        assert self.header[0] == b"IM"
         self.comment = np.fromfile(self.fd, f"a{self.header[1]}", 1)[0]
         return self.header, self.comment
 
 
-def main():
+if __name__ == "__main__":
     reader = HISReader("a.HIS")
     for i, image in enumerate(tqdm(reader)):
         pass
-
-
-if __name__=="__main__":
-    main()
