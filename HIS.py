@@ -27,7 +27,7 @@ class HISReader:
         if self.count == self.length:
             return None
         self.header, self.comment = self.__read_header()
-        if lsef.header[6] != 2:
+        if self.header[6] != 2:
             raise NotImplementedError("only 16bit type is supported")
         width, height = self.header[2:4]
         image = np.fromfile(self.fd, f"{width}H", height)
