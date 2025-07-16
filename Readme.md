@@ -1,3 +1,8 @@
+# Disclamer
+
+This project is no longer maintained. You can use [pyHIS](https://github.com/uedasan/pyHIS) instead:
+
+
 # HIS reader for python
 
 Python module for reading files in HIS file format used in the image processing software HiPic (Hamamatsu Photonics).
