@@ -1,4 +1,4 @@
-# Disclamer
+# Disclaimer
 
 This project is no longer maintained. You can use [pyHIS](https://github.com/uedasan/pyHIS) instead:
 
